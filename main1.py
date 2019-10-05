@@ -19,6 +19,8 @@ BULLET_DAMAGE = 10
 ENEMY_HP = 100
 HIT_SCORE = 10
 KILL_SCORE = 100
+#self.background = 'assets/SpaceShooterBackground'
+
 
 class Bullet(arcade.Sprite):
     def __init__(self, position, velocity, damage):
@@ -56,6 +58,18 @@ class Enemy(arcade.Sprite):
         super().__init__("assets/EnemySpaceShip.png", 0.5)
         self.hp = ENEMY_HP
         (self.center_x, self.center_y) = position
+        #(self.dx, self.dy) = velocity #This is defined to make enemies move on their own
+
+class EnemyBullet(arcade.Sprite):
+    def __init__(self, position, velocity, damage):
+        super().__init__("assets/bullet_enemy.png", 0.5)
+        (self.center_x, self.center_y) = position
+        (self.dx, self.dy) = velocity
+        self.damage = damage
+        #Figure out how to match the shooting enemy bullets up with the enemy's positions
+        #def update(self):
+            #self.center_x += 
+            #self.center_y += 
 
 
         
@@ -69,7 +83,7 @@ class Window(arcade.Window):
         os.chdir(file_path)
 
         self.set_mouse_visible(True)
-        #arcade.set_background_color(open_color.black)
+        self.background = arcade.load_texture("assets/SpaceShooterBackground.jpg") #Find a set background command
         self.bullet_list = arcade.SpriteList()
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
@@ -80,14 +94,26 @@ class Window(arcade.Window):
         Set up enemies
         '''
         for i in range(NUM_ENEMIES):
-            x = 120 * (i+1) + 40
-            y = 500
+            x = 120 * (i+1) + 40 
+            y = random.randrange(300,500)
             enemy = Enemy((x,y))
             self.enemy_list.append(enemy)            
 
     def update(self, delta_time):
         self.bullet_list.update()
-        
+        #The lines below should make enemies move around on their own FIGURE OUT VELOCITY
+        #self.enemy_list.update()
+        #for e in self.enemy_list:
+           # e.center_x = e.center_x + e.dx
+            #e.center_y = e.center_y + e.dy
+            #if e.center_x <= 0:
+                #e.dx = abs(e.dx)
+            #if e.center_x >= SCREEN_WIDTH:
+                #e.dx = abs(e.dx) * -1
+            #if e.center_y <= 750:
+                #e.dy = abs(e.dy)
+            #if e.center_y >= SCREEN_HEIGHT:
+                #e.dy = abs(e.dy) * 1
         for e in self.enemy_list:
 
             damage = arcade.check_for_collision_with_list(e, self.bullet_list)
@@ -99,7 +125,7 @@ class Window(arcade.Window):
                     self.score = self.score + KILL_SCORE
                 else:
                     self.score = self.score + HIT_SCORE
-
+           
     def on_draw(self):
         arcade.start_render()
         #arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
@@ -109,9 +135,10 @@ class Window(arcade.Window):
 
     def on_mouse_motion(self, x, y, dx, dy):
         '''
-        The player moves left and right with the mouse
+        The player moves left and right and up and down with the mouse
         '''
         self.player.center_x = x
+        self.player.center_y = y
 
     def on_mouse_press(self, x, y, button, modifiers):
         if button == arcade.MOUSE_BUTTON_LEFT:
