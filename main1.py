@@ -50,7 +50,7 @@ class Player(arcade.Sprite):
 class Enemy(arcade.Sprite):
     def __init__(self, position):
         '''
-        initializes a penguin enemy
+        initializes an enemy
         Parameter: position: (x,y) tuple
         '''
         super().__init__("assets/EnemySpaceShip.png", 0.5)
@@ -69,7 +69,7 @@ class Window(arcade.Window):
         os.chdir(file_path)
 
         self.set_mouse_visible(True)
-        # arcade.set_background_color(open_color.blue_4)
+        #arcade.set_background_color(open_color.black)
         self.bullet_list = arcade.SpriteList()
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
@@ -102,7 +102,7 @@ class Window(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
-        arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
+        #arcade.draw_text(str(self.score), 20, SCREEN_HEIGHT - 40, open_color.white, 16)
         self.player.draw()
         self.bullet_list.draw()
         self.enemy_list.draw()
