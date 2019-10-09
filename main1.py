@@ -19,7 +19,6 @@ BULLET_DAMAGE = 10
 ENEMY_HP = 100
 HIT_SCORE = 10
 KILL_SCORE = 100
-#self.background = 'assets/SpaceShooterBackground'
 
 
 class Bullet(arcade.Sprite):
@@ -83,7 +82,7 @@ class Window(arcade.Window):
         os.chdir(file_path)
 
         self.set_mouse_visible(True)
-        self.background = arcade.load_texture("assets/SpaceShooterBackground.jpg") #Find a set background command
+        self.background = None
         self.bullet_list = arcade.SpriteList()
         self.enemy_list = arcade.SpriteList()
         self.player = Player()
@@ -97,7 +96,9 @@ class Window(arcade.Window):
             x = 120 * (i+1) + 40 
             y = random.randrange(300,500)
             enemy = Enemy((x,y))
-            self.enemy_list.append(enemy)            
+            self.enemy_list.append(enemy)       
+
+        self.background = arcade.load_texture("assets/SpaceShooterBackground.jpg") 
 
     def update(self, delta_time):
         self.bullet_list.update()
@@ -132,6 +133,8 @@ class Window(arcade.Window):
         self.player.draw()
         self.bullet_list.draw()
         self.enemy_list.draw()
+
+        arcade.draw_texture_rectangle(SCREEN_WIDTH//2, SCREEN_HEIGHT//2, SCREEN_WIDTH, SCREEN_HEIGHT, self.background)
 
     def on_mouse_motion(self, x, y, dx, dy):
         '''
