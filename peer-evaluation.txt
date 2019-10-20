@@ -1,0 +1,37 @@
+Name: Chun Fung Lai
+Date: October 19, 2019
+Project: Space-Shooter
+Peer's repository: https://github.com/madecole/Space-Shooter
+
+
+
+What is something you learned by reviewing your peer's project?
+From reviewing my peer's project, it remind me how to create an object class and how the collision work.
+ 
+
+What is something you saw in your peer's project that you would like to apply to your own programming projects?
+I think my project have everything in my peer's project, so I don't know what else I can take from it.
+ 
+
+What suggestions would you have for your peer to improve his/her code?
+Write comment on every class would help.
+ 
+
+What could have been clearer or better commented?
+There are some imcompleted comment, he can finish or delete those comment to avoid confusion.
+ 
+
+Was there anything in the code that was confusing to you? If so, what?
+Some comment make me feel confuse because my peer didnt finish writing some comment.
+ 
+
+Does the repository contain an appropriate LICENSE?
+Yes, it does.
+ 
+
+What is something he/she could add to the README.md to make it more descriptive?
+He could add how close his game to the one he want to make, and what is the difference.
+ 
+
+Pay a compliment to your peer based on the quality of his/her code.
+It is a good start on creating a python game, the sprites and the background looks great.
